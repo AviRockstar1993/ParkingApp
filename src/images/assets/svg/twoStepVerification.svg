@@ -1,0 +1,18 @@
+<svg width="78" height="67" viewBox="0 0 78 67" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="37.6067" cy="39.3354" r="27.6645" fill="url(#paint0_linear_58_159)"/>
+<circle cx="5.18708" cy="8.64509" r="4.32258" fill="#5664E2"/>
+<circle cx="74.1321" cy="7.13232" r="3.24194" fill="#5664E2"/>
+<circle cx="40.2001" cy="2.16129" r="2.16129" fill="#5664E2"/>
+<circle cx="62.245" cy="61.8129" r="1.29677" fill="#5664E2"/>
+<circle cx="1.72903" cy="39.3355" r="1.72903" fill="#5664E2"/>
+<circle cx="68.0805" cy="45.171" r="1.5129" fill="#5664E2"/>
+<circle cx="16.2096" cy="62.8935" r="1.08065" fill="#5664E2"/>
+<path d="M45 38H31C29.8954 38 29 38.8954 29 40V47C29 48.1046 29.8954 49 31 49H45C46.1046 49 47 48.1046 47 47V40C47 38.8954 46.1046 38 45 38Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M33 38V34C33 32.6739 33.5268 31.4021 34.4645 30.4645C35.4021 29.5268 36.6739 29 38 29C39.3261 29 40.5979 29.5268 41.5355 30.4645C42.4732 31.4021 43 32.6739 43 34V38" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<linearGradient id="paint0_linear_58_159" x1="-62" y1="-73.5" x2="70.026" y2="82.9935" gradientUnits="userSpaceOnUse">
+<stop offset="0.171875" stop-color="#5664E2" stop-opacity="0"/>
+<stop offset="0.859375" stop-color="#5664E2"/>
+</linearGradient>
+</defs>
+</svg>
