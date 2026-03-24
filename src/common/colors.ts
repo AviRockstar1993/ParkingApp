@@ -1,0 +1,16 @@
+export const colors = {
+  splashFirst: '#bc0163',
+  white: '#ffffff',
+  grey: '#dadada',
+  customText: '#b6b6b6',
+  indicate: '#d9d9d9',
+  black: '#000000',
+  customGrey: '#9C9494',
+  inputColor: '#A9A9A9',
+  customBlack: '#353535',
+  roundColor: '#BC00634D',
+  btnBack: '#f9e5f0',
+  orange: '#df321d',
+  green: '#01DB3E',
+  customOrange: '#ff6552',
+};
