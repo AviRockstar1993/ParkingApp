@@ -17,16 +17,14 @@ export const styles = StyleSheet.create({
     left: 0,
   },
   title: {
-    fontSize: ms(25),
+    fontSize: ms(18),
     fontWeight: '600',
     textAlign: 'center',
     paddingHorizontal: ws(20),
-    marginTop: hs(-7),
   },
 
   mainView: {
     flex: 1,
-    justifyContent: 'space-between',
   },
 
   searchBox: {
@@ -44,7 +42,7 @@ export const styles = StyleSheet.create({
   noResult: {
     textAlign: 'center',
     paddingTop: hs(15),
-    fontSize: ms(15),
+    fontSize: ms(14),
     fontWeight: '500',
   },
   input: {
@@ -77,5 +75,53 @@ export const styles = StyleSheet.create({
   itemText: {
     fontSize: ms(15),
     color: colors.customGrey,
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: hs(14),
+    borderBottomWidth: ws(0.5),
+    borderColor: colors.indicate,
+  },
+
+  iconContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: ws(40),
+  },
+  iconText: {
+    color: colors.white,
+    fontWeight: '700',
+    fontSize: ms(17),
+  },
+
+  middleContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: ws(10),
+  },
+
+  address: {
+    fontSize: ms(13),
+    color: colors.customGrey,
+    textAlign: 'center',
+    marginTop: hs(2),
+  },
+
+  rightContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    width: ws(80),
+  },
+  distance: {
+    fontSize: 13,
+    color: '#555',
+  },
+  price: {
+    fontSize: 14,
+    color: '#E91E63',
+    fontWeight: '600',
+    marginTop: 4,
   },
 });
