@@ -77,15 +77,15 @@ const ExtendParkingScreen = ({ navigation }: any) => {
             );
           }}
         />
-      </View>
 
-      {/* Total */}
-      <View style={styles.totalWrapper}>
-        <Text style={styles.totalLabel}>Total</Text>
-        <Text style={styles.totalText}>
-          ${total.toFixed(2)}{' '}
-          <Text style={styles.durationText}>/ {duration} hours</Text>
-        </Text>
+        {/* Total */}
+        <View style={styles.totalWrapper}>
+          <Text style={styles.totalLabel}>Total</Text>
+          <Text style={styles.totalText}>
+            ${total.toFixed(2)}{' '}
+            <Text style={styles.durationText}>/ {duration} hours</Text>
+          </Text>
+        </View>
       </View>
 
       {/* Button */}
