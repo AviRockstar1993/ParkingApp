@@ -36,8 +36,11 @@ const LoginWithForgotPass = ({ navigation }: any) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <BackArrow onPress={goback} />
       <View style={styles.mainView}>
-        <Header title="Forgot Password" onBack={goback} titleAlign="left" />
+        <Text style={styles.title} numberOfLines={2}>
+          {staticText.loginHeaderWithForgot}
+        </Text>
         {/* Email Input */}
         <CustomInput
           placeholder="Email"

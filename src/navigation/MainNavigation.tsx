@@ -19,6 +19,9 @@ import Notification from '../screens/Notification';
 import NotificationFromProfile from '../screens/NotificationFromProfile';
 import SecurityScreen from '../screens/SecurityScreen';
 import ParkingTicket from '../screens/ParkingTicket';
+import CloseMapScreen from '../screens/CloseMapScreen';
+import ParkingTimer from '../screens/ParkingTimerScreen';
+import ExtendParkingScreen from '../screens/ExtendParkingScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -106,6 +109,21 @@ const MainNavigation = (): React.JSX.Element => {
         <Stack.Screen
           name="ParkingTicket"
           component={ParkingTicket}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CloseMapScreen"
+          component={CloseMapScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ParkingTimer"
+          component={ParkingTimer}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ExtendParkingScreen"
+          component={ExtendParkingScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

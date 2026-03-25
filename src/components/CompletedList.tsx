@@ -12,9 +12,10 @@ import { colors } from '../common/colors';
 
 interface Props {
   data: any[];
+  navigation: any;
 }
 
-const CompletedList = ({ data }: Props) => {
+const CompletedList = ({ data, navigation }: Props) => {
   const [activeId, setActiveId] = useState<string | null>(null);
 
   const ListItem = ({ item }: any) => {
@@ -46,7 +47,10 @@ const CompletedList = ({ data }: Props) => {
         </View>
         <View style={styles.divider} />
         <View style={styles.buttonRow}>
-          <TouchableOpacity style={styles.cancelBtn}>
+          <TouchableOpacity
+            style={styles.cancelBtn}
+            onPress={() => navigation.navigate('ParkingTicket')}
+          >
             <Text style={styles.cancelText}>View Ticket</Text>
           </TouchableOpacity>
         </View>

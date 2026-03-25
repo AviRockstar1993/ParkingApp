@@ -63,7 +63,10 @@ const SecurityScreen = ({ navigation }: any) => {
           renderItem={renderItem}
           showsVerticalScrollIndicator={false}
           ListFooterComponent={
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate('CreatePasswordScreen')}
+            >
               <Text style={styles.buttonText}>Change Password</Text>
             </TouchableOpacity>
           }

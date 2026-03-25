@@ -11,7 +11,7 @@ import CommonList from '../components/CancelledList';
 import OngoingList from '../components/OngoingList';
 import CompletedList from '../components/CompletedList';
 
-const BookScreen = () => {
+const BookScreen = ({ navigation }: any) => {
   const diffLocation = ['Ongoing', 'Completed', 'Cancelled'];
   const [selected, setSelected] = useState('Ongoing');
 
@@ -211,7 +211,7 @@ const BookScreen = () => {
         {selected === 'Cancelled' && <CommonList data={filteredCancelData} />}
         {selected === 'Ongoing' && <OngoingList data={filteredOngoinglData} />}
         {selected === 'Completed' && (
-          <CompletedList data={filteredCompletedData} />
+          <CompletedList data={filteredCompletedData} navigation={navigation} />
         )}
       </View>
     </SafeAreaView>

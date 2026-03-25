@@ -9,18 +9,18 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.white,
   },
   title: {
-    fontSize: ms(40),
+    fontSize: ms(30),
     fontWeight: '600',
     marginBottom: hs(30),
+    textAlign: 'left',
     paddingTop: hs(10),
   },
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: colors.customGrey,
     borderRadius: ws(15),
     paddingHorizontal: ws(15),
-    marginBottom: hs(15),
   },
   icon: {
     marginRight: 10,
@@ -47,6 +47,12 @@ export const styles = StyleSheet.create({
     width: ws(18),
     height: hs(19),
     borderColor: colors.splashFirst,
+  },
+  errorText: {
+    color: colors.splashFirst,
+    marginHorizontal: ws(10),
+    fontSize: ms(12),
+    marginTop: hs(8),
   },
 
   rememberText: {

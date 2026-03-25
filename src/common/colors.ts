@@ -13,4 +13,5 @@ export const colors = {
   orange: '#df321d',
   green: '#01DB3E',
   customOrange: '#ff6552',
+  cardColor: '#F4F4F4',
 };
