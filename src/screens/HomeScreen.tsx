@@ -122,6 +122,11 @@ const HomeScreen = ({ navigation, route }: any) => {
     getLocation();
   }, []);
 
+  const handleClose = () => {
+    navigation.navigate('CloseMapScreen');
+    setIsModalVisible(false);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <MapView
@@ -240,10 +245,7 @@ const HomeScreen = ({ navigation, route }: any) => {
         </View>
       )}
 
-      <MapModal
-        visible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
-      />
+      <MapModal visible={isModalVisible} onClose={handleClose} />
     </SafeAreaView>
   );
 };

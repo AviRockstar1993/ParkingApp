@@ -23,6 +23,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const RegistrationScreen = ({ navigation, route }: any) => {
   const fromProfile = route?.params?.fromProfile || false;
+  const [errors, setErrors] = useState<any>({});
 
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [name, setName] = useState<string>('');
@@ -34,7 +35,8 @@ const RegistrationScreen = ({ navigation, route }: any) => {
   const [value, setValue] = useState('');
   const [formattedValue, setFormattedValue] = useState('');
   const [isProfileLoaded, setIsProfileLoaded] = useState<boolean>(false);
-  const phoneInput = useRef(null);
+  const [phone, setPhone] = useState('');
+  const phoneInput = useRef<PhoneInput>(null);
 
   const goback = () => {
     navigation.goBack();
@@ -92,20 +94,65 @@ const RegistrationScreen = ({ navigation, route }: any) => {
     );
   };
 
+  const validate = () => {
+    let valid = true;
+    let tempErrors: any = {};
+
+    // Name validation
+    if (!name.trim()) {
+      tempErrors.name = 'Full name is required';
+      valid = false;
+    } else if (name.trim().length < 3) {
+      tempErrors.name = 'Name must be at least 3 characters';
+      valid = false;
+    }
+
+    if (!nickName.trim()) {
+      tempErrors.nickName = 'Nickname is required';
+      valid = false;
+    } else if (nickName.trim().length < 2) {
+      tempErrors.nickName = 'Nickname too short';
+      valid = false;
+    }
+
+    // DOB
+    if (!dob) {
+      tempErrors.dob = 'Date of birth is required';
+      valid = false;
+    }
+
+    // Phone
+    if (!phone) {
+      tempErrors.phone = 'Phone number is required';
+      valid = false;
+    }
+
+    // Gender (Dropdown)
+    if (!value) {
+      tempErrors.gender = 'Please select gender';
+      valid = false;
+    }
+
+    setErrors(tempErrors);
+    return valid;
+  };
+
   const formatDate = (date: Date) => {
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
   const saveData = async () => {
+    if (!validate()) return;
     try {
       const userData = {
         name,
         nickName,
         imageUri,
         dob,
-        phone: value,
-        formattedPhone: value,
+        phone: formattedValue,
+        gender: value,
       };
+      console.log('userDta', userData);
 
       await AsyncStorage.setItem('USER_PROFILE', JSON.stringify(userData));
 
@@ -124,13 +171,30 @@ const RegistrationScreen = ({ navigation, route }: any) => {
       if (data !== null) {
         const parsedData = JSON.parse(data);
 
+        const formatted = parsedData.phone || '';
+
+        const numberWithoutCode = formatted.replace(/^\+\d{1,2}/, '');
+        let genderValue = '';
+
+        if (Array.isArray(parsedData.gender)) {
+          genderValue = parsedData.gender[0]?.value || '';
+        } else {
+          genderValue = parsedData.gender || '';
+        }
         setName(parsedData.name || '');
         setNickName(parsedData.nickName || '');
         setImageUri(parsedData.imageUri || '');
         setDob(parsedData.dob || '');
-        setValue(parsedData.phone || '');
-        setFormattedValue(parsedData.formattedPhone || '');
+        setPhone(numberWithoutCode);
+        setFormattedValue(formatted);
+        setValue(genderValue);
         setIsProfileLoaded(true);
+        setTimeout(() => {
+          phoneInput.current?.setState({
+            number: numberWithoutCode,
+          });
+        }, 100);
+        console.log('././', numberWithoutCode);
       }
     } catch (error) {
       console.log('Error loading data:', error);
@@ -186,6 +250,9 @@ const RegistrationScreen = ({ navigation, route }: any) => {
                 value={name}
                 onChangeText={setName}
               />
+              {errors.name && (
+                <Text style={{ color: colors.splashFirst }}>{errors.name}</Text>
+              )}
               <View style={styles.fieldWrapper}>
                 <CustomInput
                   placeholder="Nick Name"
@@ -193,6 +260,11 @@ const RegistrationScreen = ({ navigation, route }: any) => {
                   onChangeText={setNickName}
                 />
               </View>
+              {errors.nickName && (
+                <Text style={{ color: colors.splashFirst }}>
+                  {errors.nickName}
+                </Text>
+              )}
               <View style={styles.fieldWrapper}>
                 <TouchableOpacity onPress={() => setShow(true)}>
                   <CustomInput
@@ -202,6 +274,11 @@ const RegistrationScreen = ({ navigation, route }: any) => {
                     pointerEvents="none"
                     iconRight={<DobIcon width={16} height={16} fill="black" />}
                   />
+                  {errors.dob && (
+                    <Text style={{ color: colors.splashFirst }}>
+                      {errors.dob}
+                    </Text>
+                  )}
                 </TouchableOpacity>
                 <DatePicker
                   modal
@@ -223,15 +300,21 @@ const RegistrationScreen = ({ navigation, route }: any) => {
                 <View style={styles.phoneField}>
                   <PhoneInput
                     ref={phoneInput}
-                    defaultValue={value}
+                    value={phone}
+                    // defaultValue={phone}
                     defaultCode="IN"
                     layout="first"
                     containerStyle={styles.phoneContainer}
                     textContainerStyle={styles.textContainer}
-                    onChangeText={text => setValue(text)}
+                    onChangeText={text => setPhone(text)}
                     onChangeFormattedText={text => setFormattedValue(text)}
                   />
                 </View>
+                {errors.phone && (
+                  <Text style={{ color: colors.splashFirst }}>
+                    {errors.phone}
+                  </Text>
+                )}
               </View>
               <View style={styles.fieldWrapper}>
                 <Dropdown
@@ -252,6 +335,11 @@ const RegistrationScreen = ({ navigation, route }: any) => {
                     setValue(item.value);
                   }}
                 />
+                {errors.gender && (
+                  <Text style={{ color: colors.splashFirst }}>
+                    {errors.gender}
+                  </Text>
+                )}
               </View>
             </View>
           </View>

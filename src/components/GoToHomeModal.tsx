@@ -8,6 +8,7 @@ import {
   GestureResponderEvent,
 } from 'react-native';
 import ModalHeader from '../images/assets/svg/modalHeader.svg';
+import LocationHeader from '../images/assets/svg/locationMain.svg';
 import { colors } from '../common/colors';
 import { hs, ms, ws } from '../designs/measurement.design';
 
@@ -16,8 +17,11 @@ type CustomModalProps = {
   onClose: () => void;
   onPress: (event: GestureResponderEvent) => void;
   title?: string;
+  titleColor?: string;
+  fromMap?: boolean;
   subTitle?: string;
   buttonText?: string;
+  resizeBtn?: boolean;
   children?: React.ReactNode;
 };
 
@@ -26,8 +30,11 @@ const CustomModal: React.FC<CustomModalProps> = ({
   onClose,
   onPress,
   title,
+  titleColor,
+  fromMap,
   subTitle,
   buttonText,
+  resizeBtn,
   children,
 }) => {
   return (
@@ -35,16 +42,26 @@ const CustomModal: React.FC<CustomModalProps> = ({
       <View style={styles.overlay}>
         <View style={styles.container}>
           {/* Icon Circle */}
-          <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <ModalHeader width={170} height={140} fill={colors.white} />
-          </View>
+
+          {fromMap ? (
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <LocationHeader width={170} height={140} fill={colors.white} />
+            </View>
+          ) : (
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+              <ModalHeader width={170} height={140} fill={colors.white} />
+            </View>
+          )}
 
           {/* Text */}
-          <Text style={styles.title}>{title}</Text>
+          <Text style={[styles.title, { color: titleColor }]}>{title}</Text>
           <Text style={styles.subtitle}>{subTitle}</Text>
 
           {/* Button */}
-          <TouchableOpacity style={styles.button} onPress={onPress}>
+          <TouchableOpacity
+            style={[styles.button, resizeBtn && { width: ws(150) }]}
+            onPress={onPress}
+          >
             <Text style={styles.buttonText}>{buttonText}</Text>
           </TouchableOpacity>
         </View>
@@ -71,14 +88,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: ms(28),
+    fontSize: ms(25),
     fontWeight: '600',
     color: colors.splashFirst,
     marginBottom: hs(10),
     marginTop: hs(15),
+    textAlign: 'center',
   },
   subtitle: {
-    fontSize: ms(16),
+    fontSize: ms(15),
     fontWeight: '500',
     color: colors.customBlack,
     textAlign: 'center',
@@ -93,6 +111,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.white,
     fontWeight: '700',
+    textAlign: 'center',
     fontSize: ms(16),
   },
 });
